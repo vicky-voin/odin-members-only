@@ -4,6 +4,7 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 require("dotenv").config();
+const signUpRouter = require("./routes/signUpRouter");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -20,6 +21,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 
 app.get("/", (req, res) => res.render("index"));
+app.use("/sign-up", signUpRouter);
 
 app.listen(3000, (error) => {
   if (error) {

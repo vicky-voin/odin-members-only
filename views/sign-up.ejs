@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+  </head>
+  <body>
+    <h1>Sign up</h1>
+    <form action="/sign-up" method="POST">
+      <label for="firstName">First name</label>
+      <input id="firstName" name="firstName" type="text" />
+      <label for="lastName">Last name</label>
+      <input id="lastName" name="lastName" type="text" />
+      <label for="username">Username</label>
+      <input
+        id="username"
+        name="username"
+        placeholder="your.email@example.com"
+        type="email"
+      />
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" />
+      <%- include("partials/errors.ejs") %>
+      <button type="submit">Sign up</button>
+    </form>
+  </body>
+</html>

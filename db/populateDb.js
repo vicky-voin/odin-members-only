@@ -24,6 +24,7 @@ client.query("BEGIN", (err) => {
     `CREATE TABLE IF NOT EXISTS users (
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         username VARCHAR(255),
+        password VARCHAR(255),
         firstName VARCHAR(255),
         lastName VARCHAR(255),
         isMember BOOLEAN
