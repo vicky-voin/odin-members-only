@@ -18,7 +18,7 @@ async function registerNewUser(userData) {
       userData.password,
       userData.firstName,
       userData.lastName,
-      true,
+      false,
     ]
   );
 }
