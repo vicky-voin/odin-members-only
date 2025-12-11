@@ -9,8 +9,12 @@
     <h1>Members Only</h1>
     <% if(user) { %>
     <h2>Logged in as <%= user.username %></h2>
+    <p>Name: <%= user.first_name %> <%= user.last_name %></p>
+    <p>Status: <%= user.is_member ? 'Member' : 'Not a member' %></p>
     <a href="/logout">Log out</a>
-    <% } else { %>
+    <% if(!user.is_member) { %>
+    <a href="/join">Become a member</a>
+    <% } %> <% } else { %>
     <a href="/sign-up">Sign up</a>
     <a href="/login">Login</a>
     <% } %>

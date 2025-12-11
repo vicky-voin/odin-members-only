@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const { body, validationResult, matchedData } = require("express-validator");
 
 const validateUserData = [
-  body("firstName")
+  body("first_name")
     .trim()
     .notEmpty()
     .withMessage("First name cannot be empty")
@@ -11,7 +11,7 @@ const validateUserData = [
     .withMessage("Frist name must only contain alphabet characters")
     .isLength({ min: 1, max: 255 })
     .withMessage("First name must be between 1 and 255 characters long"),
-  body("lastName")
+  body("last_name")
     .trim()
     .notEmpty()
     .withMessage("Last name cannot be empty")

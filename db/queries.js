@@ -24,15 +24,23 @@ async function getUserWithId(id) {
 
 async function registerNewUser(userData) {
   await pool.query(
-    "INSERT INTO users(username, password, firstName, lastName, isMember) VALUES($1, $2, $3, $4, $5)",
+    "INSERT INTO users(username, password, first_name, last_name, is_member) VALUES($1, $2, $3, $4, $5)",
     [
       userData.username,
       userData.password,
-      userData.firstName,
-      userData.lastName,
+      userData.first_name,
+      userData.last_name,
       false,
     ]
   );
+}
+
+async function giveUserMembership(id) {
+  const { rows } = await pool.query(
+    "UPDATE users SET is_member = TRUE WHERE id = $1 RETURNING *",
+    [id]
+  );
+  return rows;
 }
 
 module.exports = {
@@ -41,4 +49,5 @@ module.exports = {
   getUserWithId,
   getUserWithUsername,
   registerNewUser,
+  giveUserMembership,
 };

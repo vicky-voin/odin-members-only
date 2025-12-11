@@ -25,9 +25,9 @@ client.query("BEGIN", (err) => {
         id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
         username VARCHAR(255),
         password VARCHAR(255),
-        firstName VARCHAR(255),
-        lastName VARCHAR(255),
-        isMember BOOLEAN
+        first_name VARCHAR(255),
+        last_name VARCHAR(255),
+        is_member BOOLEAN
     )`,
     (err) => {
       if (err) throw err;
@@ -37,7 +37,7 @@ client.query("BEGIN", (err) => {
             id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
             user_id INTEGER REFERENCES users(id),
             text TEXT,
-            timePosted TIMESTAMPTZ
+            time_posted TIMESTAMPTZ
         )`,
         (err) => {
           if (err) throw err;
@@ -45,74 +45,74 @@ client.query("BEGIN", (err) => {
           const users = [
             {
               username: "alice.anderson@example.com",
-              firstName: "Alice",
-              lastName: "Anderson",
-              isMember: true,
+              first_name: "Alice",
+              last_name: "Anderson",
+              is_member: true,
             },
             {
               username: "bob.brown@example.com",
-              firstName: "Bob",
-              lastName: "Brown",
-              isMember: false,
+              first_name: "Bob",
+              last_name: "Brown",
+              is_member: false,
             },
             {
               username: "carol.clark@example.com",
-              firstName: "Carol",
-              lastName: "Clark",
-              isMember: true,
+              first_name: "Carol",
+              last_name: "Clark",
+              is_member: true,
             },
             {
               username: "dave.davis@example.com",
-              firstName: "Dave",
-              lastName: "Davis",
-              isMember: false,
+              first_name: "Dave",
+              last_name: "Davis",
+              is_member: false,
             },
           ];
           const insertUser =
-            "INSERT INTO users (username, firstName, lastName, isMember) VALUES ($1, $2, $3, $4) RETURNING id";
+            "INSERT INTO users (username, first_name, last_name, is_member) VALUES ($1, $2, $3, $4) RETURNING id";
           const userIds = [];
 
           (async () => {
             for (const user of users) {
               const res = await client.query(insertUser, [
                 user.username,
-                user.firstName,
-                user.lastName,
-                user.isMember,
+                user.first_name,
+                user.last_name,
+                user.is_member,
               ]);
               userIds.push(res.rows[0].id);
             }
 
             const messages = [
               {
-                userIdx: 0,
+                user_id: 0,
                 text: "Hello, this is Alice!",
-                timePosted: new Date(),
+                time_posted: new Date(),
               },
               {
-                userIdx: 1,
+                user_id: 1,
                 text: "Bob here, nice to meet you.",
-                timePosted: new Date(),
+                time_posted: new Date(),
               },
               {
-                userIdx: 2,
+                user_id: 2,
                 text: "Carol joined the chat.",
-                timePosted: new Date(),
+                time_posted: new Date(),
               },
-              { userIdx: 3, text: "Dave says hi!", timePosted: new Date() },
+              { user_id: 3, text: "Dave says hi!", time_posted: new Date() },
               {
-                userIdx: 0,
+                user_id: 0,
                 text: "Alice again, welcome everyone!",
-                timePosted: new Date(),
+                time_posted: new Date(),
               },
             ];
             const insertMessage =
-              "INSERT INTO messages (user_id, text, timePosted) VALUES ($1, $2, $3)";
+              "INSERT INTO messages (user_id, text, time_posted) VALUES ($1, $2, $3)";
             for (const msg of messages) {
               await client.query(insertMessage, [
-                userIds[msg.userIdx],
+                userIds[msg.user_id],
                 msg.text,
-                msg.timePosted,
+                msg.time_posted,
               ]);
             }
 

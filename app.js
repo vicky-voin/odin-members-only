@@ -8,6 +8,7 @@ const db = require("./db/queries");
 const loginRouter = require("./routes/loginRouter");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
+const joinRouter = require("./routes/joinRoute");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -62,6 +63,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => res.render("index", { user: req.user }));
 app.use("/sign-up", signUpRouter);
 app.use("/login", loginRouter);
+app.use("/join", joinRouter);
 app.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {
