@@ -3,12 +3,14 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 require("dotenv").config();
-const signUpRouter = require("./routes/signUpRouter");
 const db = require("./db/queries");
-const loginRouter = require("./routes/loginRouter");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
-const joinRouter = require("./routes/joinRoute");
+
+const indexRouter = require("./routes/indexRouter");
+const signUpRouter = require("./routes/signUpRouter");
+const loginRouter = require("./routes/loginRouter");
+const joinRouter = require("./routes/joinRouter");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -60,7 +62,7 @@ passport.deserializeUser(async (id, done) => {
 
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => res.render("index", { user: req.user }));
+app.use("/", indexRouter);
 app.use("/sign-up", signUpRouter);
 app.use("/login", loginRouter);
 app.use("/join", joinRouter);

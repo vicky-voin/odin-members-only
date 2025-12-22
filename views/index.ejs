@@ -18,5 +18,14 @@
     <a href="/sign-up">Sign up</a>
     <a href="/login">Login</a>
     <% } %>
+    <ul>
+      <% messages.forEach(message => { %>
+      <li>
+        <div><%= message.text %></div>
+        <div><%= message.username %></div>
+        <div><%= message.time_posted %></div>
+      </li>
+      <% }); %>
+    </ul>
   </body>
 </html>
