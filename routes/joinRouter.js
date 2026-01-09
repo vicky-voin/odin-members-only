@@ -1,12 +1,15 @@
 const { Router } = require("express");
-const { processMembershipRequest } = require("../controllers/joinController");
+const {
+  processMembershipRequest,
+  processAdminRequest,
+  renderForm,
+} = require("../controllers/joinController");
 
 const joinRouter = Router();
 
-joinRouter.get("/", (req, res) => {
-  res.render("join");
-});
+joinRouter.get("/", renderForm);
 
-joinRouter.post("/", processMembershipRequest);
+joinRouter.post("/admin", processAdminRequest);
+joinRouter.post("/member", processMembershipRequest);
 
 module.exports = joinRouter;

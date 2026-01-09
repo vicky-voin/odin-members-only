@@ -27,7 +27,8 @@ client.query("BEGIN", (err) => {
         password VARCHAR(255),
         first_name VARCHAR(255),
         last_name VARCHAR(255),
-        is_member BOOLEAN
+        is_member BOOLEAN,
+        is_admin BOOLEAN DEFAULT FALSE
     )`,
     (err) => {
       if (err) throw err;

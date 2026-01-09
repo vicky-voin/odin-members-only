@@ -43,6 +43,14 @@ async function giveUserMembership(id) {
   return rows;
 }
 
+async function makeUserAdmin(id) {
+  const { rows } = await pool.query(
+    "UPDATE users SET is_admin = TRUE WHERE id = $1 RETURNING *",
+    [id]
+  );
+  return rows;
+}
+
 module.exports = {
   getAllMessages,
   getAllUsers,
@@ -50,4 +58,5 @@ module.exports = {
   getUserWithUsername,
   registerNewUser,
   giveUserMembership,
+  makeUserAdmin,
 };

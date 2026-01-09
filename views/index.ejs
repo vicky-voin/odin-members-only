@@ -10,10 +10,16 @@
     <% if(user) { %>
     <h2>Logged in as <%= user.username %></h2>
     <p>Name: <%= user.first_name %> <%= user.last_name %></p>
-    <p>Status: <%= user.is_member ? 'Member' : 'Not a member' %></p>
+    <p>
+      <% let status = ''; if(user.is_admin) { status = 'Admin'; } else if
+      (user.is_member){ status = 'Member'; } else { status = 'Not a member'; }
+      %> Status: <%= status %> %>
+    </p>
     <a href="/logout">Log out</a>
     <% if(!user.is_member) { %>
     <a href="/join">Become a member</a>
+    <% } %> <% if(user.is_member && !user.is_admin) { %>
+    <a href="/join">Become an admin</a>
     <% } %> <% } else { %>
     <a href="/sign-up">Sign up</a>
     <a href="/login">Login</a>

@@ -3,12 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Become a member</title>
+    <title>
+      <% if (!user.is_member) { %> Become a member <% } else if (!user.is_admin)
+      { %> Become an admin <% } %>
+    </title>
   </head>
   <body>
     <h1>Join</h1>
-    <h2>Enter the secret password to become a member</h2>
-    <form action="/join" method="POST">
+    <h2>
+      Enter the secret password to become <% if (!user.is_member) { %> a member
+      <% } else if (!user.is_admin) { %> an admin <% } %>
+    </h2>
+    <form <% if (!user.is_member) { %>
+      action="/join/member" <% } else if (!user.is_admin) { %>
+      action="/join/admin" <% } %> method="POST">
       <label for="password">Secret password</label>
       <input id="password" name="password" type="password" />
       <%- include("partials/errors.ejs") %>
