@@ -31,6 +31,9 @@
         <div><%= message.text %></div>
         <div><%= message.username %></div>
         <div><%= message.time_posted %></div>
+        <% if(user && user.is_admin) { %>
+        <a href="/delete/<%= message.id %>">Delete</a>
+        <% } %>
       </li>
       <% }); %>
     </ul>

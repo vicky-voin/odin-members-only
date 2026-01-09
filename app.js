@@ -12,6 +12,7 @@ const signUpRouter = require("./routes/signUpRouter");
 const loginRouter = require("./routes/loginRouter");
 const joinRouter = require("./routes/joinRouter");
 const newRouter = require("./routes/newRouter");
+const deleteRouter = require("./routes/deleteRouter");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -68,6 +69,7 @@ app.use("/sign-up", signUpRouter);
 app.use("/login", loginRouter);
 app.use("/join", joinRouter);
 app.use("/new", newRouter);
+app.use("/delete", deleteRouter);
 app.get("/logout", (req, res, next) => {
   req.logout((err) => {
     if (err) {
