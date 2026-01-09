@@ -16,6 +16,7 @@
       %> Status: <%= status %> %>
     </p>
     <a href="/logout">Log out</a>
+    <a href="/new">Create a new message</a>
     <% if(!user.is_member) { %>
     <a href="/join">Become a member</a>
     <% } %> <% if(user.is_member && !user.is_admin) { %>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create message</title>
+  </head>
+  <body>
+    <h1>Create a message</h1>
+    <form action="/new" method="POST">
+      <label for="message">Your message:</label>
+      <textarea id="message" name="message"></textarea>
+      <%- include("partials/errors.ejs") %>
+      <button type="submit">Send</button>
+    </form>
+  </body>
+</html>

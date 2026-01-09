@@ -51,6 +51,13 @@ async function makeUserAdmin(id) {
   return rows;
 }
 
+async function addMessage(message, userId) {
+  await pool.query(
+    "INSERT INTO messages(user_id, text, time_posted) VALUES($1, $2, CURRENT_TIMESTAMP)",
+    [userId, message]
+  );
+}
+
 module.exports = {
   getAllMessages,
   getAllUsers,
@@ -59,4 +66,5 @@ module.exports = {
   registerNewUser,
   giveUserMembership,
   makeUserAdmin,
+  addMessage,
 };
