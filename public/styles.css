@@ -1,0 +1,36 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a,
+button {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.4em 0.8em;
+  margin: 12px;
+  border-width: 0;
+  background-color: rgb(230, 250, 252);
+  color: cadetblue;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+a:hover,
+button:hover {
+  color: rgb(0, 136, 255);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 40vw;
+}
+
+li {
+  list-style-type: none;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(79, 99, 99);
+  margin-bottom: 24px;
+  padding: 12px;
+}
