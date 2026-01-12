@@ -11,7 +11,7 @@ const client = new Client(
         port: 5432,
       }
     : {
-        connectionString: process.env.DB_URL,
+        connectionString: process.env.DATABASE_URL,
       }
 );
 
